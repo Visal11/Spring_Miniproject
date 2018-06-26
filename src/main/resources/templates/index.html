@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+    <h1>Book Management</h1>
+      <div class="row">
+        <div class="col">
+         <a href="/create"><button class="btn btn-info">Create</button></a><br>
+        </div>
+        <div class="col-2">
+         <a href="http://localhost:1122/?lang=km">Khmer</a>
+         <a href="http://localhost:1122/?lang=en">English</a>
+         <a href="http://localhost:1122/?lang=th">Thai</a>
+        </div>
+      </div>
+    <div>
+    <table class="table table-striped">
+     <thead class="thead-dark">
+      <tr>
+        <th scope="col" th:text="#{table.id}">ID</th>
+        <th scope="col" th:text="#{table.title}">Title</th>
+        <th scope="col" th:text="#{table.author}">Author</th>
+        <th scope="col" th:text="#{table.publisher}">Publisher</th>
+        <th scope="col" th:text="#{table.thumbnail}">Thumbnail</th>
+        <th scope="col" th:text="#{table.action}">Action</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr th:each="book:${books}">
+          <td>[[${book.id}]]</td>
+          <td th:text="${book.title}"></td>
+          <td th:text="${book.author}"></td>
+          <td th:text="${book.publisher}"></td>
+          <td>
+              <img style="width:100px; height:100px" th:src="${book.thumbnail}" alt="">
+          </td>
+          <td>
+              <a th:href="@{/view/{id}(id=${book.getId()})}"><button type="button" class="btn btn-success">View</button></a>
+              <a th:href="@{/update/{book_id}(book_id=${book.getId()})}"><button type="button" class="btn btn-primary">Update</button></a>
+              <a class="btn-delete" th:attr="data-id=${book.getId()}"><button type="button" class="btn btn-danger">Delete</button></a>
+          </td>
+      </tr>
+      </tbody>
+     </table>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+         $('body').on('click','.btn-delete', function(){
+            var data_id=$(this).attr("data-id")
+
+            if(confirm("Do you want to delete"))
+            {
+                window.location="http://localhost:1122/delete/"+ data_id;
+            }
+          });
+      });
+    </script>
+    </div>
+</body>
+</html>

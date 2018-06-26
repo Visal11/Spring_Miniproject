@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>viewdetail</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <h2>View Book</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col" th:text="#{table.id}">ID</th>
+                <th scope="col" th:text="#{table.title}">Title</th>
+                <th scope="col" th:text="#{table.author}">Author</th>
+                <th scope="col" th:text="#{table.publisher}">Publisher</th>
+                <th scope="col" th:text="#{table.thumbnail}">Thumbnail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:object="${book}">
+                <td>[[*{id}]]</td><br>
+                <td>[[*{title}]]</td>
+                <td>[[*{author}]]</td>
+                <td>[[*{publisher}]]</td>
+                <td>[[*{thumbnail}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

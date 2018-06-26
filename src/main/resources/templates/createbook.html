@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" >
+    <form method="POST" action="/create/submit" th:object="${book}" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-sm-5">
+             <h2>Create Book</h2>
+             <label>ID</label>
+             <input type="number" class="form-control" th:field="*{id}">
+             <span style="color:red;" th:if="${#fields.hasErrors()}" th:errors="*{id}">Error</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5">
+             <label>Title:</label>
+             <input type="text" class="form-control" th:field="*{title}">
+             <span style="color:red;" th:if="${#fields.hasErrors()}" th:text="*{#fields.errors('title')}">Error</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5">
+             <label>Author:</label>
+             <input type="text" class="form-control" th:field="*{author}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5">
+             <label>publisher:</label>
+             <input type="text" class="form-control" th:field="*{publisher}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5">
+                <input type="file" name="file">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5">
+                <button type="submit" class="btn btn-info">Submit</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
